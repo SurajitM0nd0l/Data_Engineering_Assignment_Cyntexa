@@ -10,7 +10,7 @@ def sales_cleaned() :
     )
 
     df_cleaned = (
-        df.dropna(subset=["order_id", "order_date"])
+        df.dropna(how="all")
         .withColumn("order_date", F.coalesce(F.col("order_date"), F.current_date()))
         .fillna({
             "order_id": -1,
